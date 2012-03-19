@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <style type="text/css">
+
+    /* 选项卡进级配置面板 */
+    .TabAdvance
+    {
+        width: 550px;
+        position: absolute;
+        z-index: 99999;
+        padding: 5px;
+        border: 1px solid #adf;
+        background-color: #f5fdfd;
+    }
+    .TabAdvance *
+    {
+        margin: 0;
+        padding: 0;
+    }
+    .TabAdvance table
+    {
+        width: 100%;
+    }
+    .TabAdvance > .TabAdvanceTitle
+    {
+        text-indent: 10px;
+        margin-bottom: 5px;
+        /*padding-bottom: 5px;
+        border-bottom: 1px solid #adf;*/
+    }
+    .TabAdvance > .TabAdvancePackage
+    {
+        width: 100%;
+    }
+    .TabAdvance .TabButton
+    {
+        background-image: none;
+    }
+    </style>
+    <script type="text/javascript" src="JQueryTabView/jquery-1.7.min.js"></script>
+    <link type="text/css" rel="Stylesheet" href="JQueryTabView/JQueryTabViewStyle_min.css" />
+    <script type="text/javascript" src="JQueryTabView/JQueryTabView_min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var api = $("#Test").JQueryTabView({
+                tabs: [{
+                    //image: "",
+                    caption: "SSSSS",
+                    active: true,
+                    index: 3,
+                    padding: 10,
+                    onClick: function (api, content, panel, e) { 
+                        //alert($(this).data("TabButtonIndex") + " '" + $(this).data("TabButtonUID") + "'"); 
+                        alert("content: " + content + "  panel: " + panel);
+                        content.append("SSSSSSSSSSSS");
+                    },
+                    onClose: function (api, content, panel, e) {
+                        alert($(this).find(".TabIcon") + "  " + $(e.target).attr("class"));
+                    }
+                },
+                {
+                    image: "",
+                    cssId: "SDSDSDXXX",
+                    caption: "QQQQQ",
+                    content: "http://www.google.com",
+                    closable: true,
+                    width: 150,
+                    index: 1,
+                    onClick: function () { this.parents("ul").find("li").show(); alert($(this).data("TabButtonIndex")); }
+                },
+                { index: 2 }, { caption: 1 }, { caption: 2 }, { caption: 3 }, { caption: 4 }, { caption: 5 }, { caption: 6 }, { caption: 7 }, { caption: 8 }
+                ],
+                name: "SSDSD",
+                tabHeight: 20,
+                active: "#JQueryTab_5",
+                autoTabId: true,
+                //tabIdText: "XXX_",
+                tabCssClass: "SCSCSC wqewqe",
+                //tabWidth: 65,
+                padding: 0,
+                scrollable: false,
+                tabClosable: false,
+                //lineHeight: 30,
+                moveOffset: 150,
+                //moveSpeed: 1,
+                tabMessage: { Add: "add tab" },
+                //debug: true,
+                //noTools: true,
+                //spacing: 15,
+                //usePanel: false,
+                onTabClick: function () { $("body").append("<br/>default click! " + $(this).data("TabButtonUID")); },
+                onTabClicked: function () { $("body").append("<br/>default clicked!"); },
+                //onTabClose: function () { $("body").append("<br/>default close!"); return false; },
+                onTabClosed: function () { $("body").append("<br/>default closed!" + this.text()); },
+                //onAddClick: function (tab, api) { alert("Add New Tab !!!!" + tab.caption); return false; },
+                onReady: function (api) { }
+                //, onInit: function () { alert($(this).toSource()); }
+            })//.GetTabViewIndex();
+
+            $("#Test2").JQueryTabView({
+                tabs: [{
+                    //image: "",
+                    caption: "SSSSS",
+                    active: true,
+                    onClick: function (api, content, panel, e) { 
+                        // alert($(this).find("label").text()); 
+                        alert("content: " + content + "  panel: " + panel);
+                    },
+                    onClose: function (api, content, panel, e) {
+                        alert($(this).find(".TabIcon") + "  " + $(e.target).attr("class"));
+                    }
+                },
+                {
+                    image: "",
+                    icon: "Test",
+                    caption: null,
+                    title: "QQQQQ",
+                    closable: false,
+                    ajax: {
+                        url: "JQueryTabView/JQueryTabViewStyle_min.css",
+                        dataType: "html",
+                        success: function(data, textStatus, xhr){
+                            this.append(data);
+                        },
+                        complete: function(xhr, textStatus){
+                            //alert("complete");
+                        },
+                        error: function(xhr, textStatus, errorThrown){
+                            alert(errorThrown);
+                        }
+                    },
+                    width: 150,
+                    onClick: function () { this.parents("ul").find("li").show(); }
+                },
+                {}, {}, {}, {}, {}, {}, {}, {}, {}
+                ],
+                //tabHeight: 18,
+                tabWidth: 65,
+                active: 2,
+                scrollable: true,
+                moveOffset: 150,
+                //debug: true,
+                //spacing: 1,
+                onTabClick: function () {
+                    //alert(this.data("TabButtonOption").toSource());
+                },
+                // onScrolledLeft: function () { alert("<--"); },
+                // onScrolledRight: function () { alert("-->"); },
+                onReady: function () { /*$("body").append($(this).html());*/ }
+            })//.GetTabViewIndex();
+            //$("#Test").GetTabViewIndex();
+            //alert($("#Test2").GetTabViewUID());
+
+            $("#Test2").JQueryTabView();
+
+
+            var cc = 0;
+            $("#Btn").click(function () {
+                var index = $("#Text1").val();
+                if (isNaN(+index) == false) index = +index;
+                alert(index);
+                api.AddTabButton([{
+                    caption: "XXXXXX" + cc++,
+                    //index: 5,
+                    onClick: function () { alert($(this).data("TabButtonIndex")); }
+                }, {
+                    caption: "-",
+                    //index: 2,
+                    onClick: function () { alert($(this).data("TabButtonIndex")); }
+                }], index);
+            });
+
+            $("#Btn2").click(function () {
+                var index = $("#Text1").val();
+                if (isNaN(+index) == false) index = +index;
+                index = $("#Test").find("li");
+                alert(index);
+                api.RemoveTabButton(index);
+            });
+
+            $("#Btn3").click(function () {
+                //var C = api.GetConfig();
+                //C.UseScroll(!C.newOption.scrollable);
+                api.TriggerScroll();
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div style="width: 500px;">
+    <div id="Test">
+    </div>
+    </div>
+    
+    <div>
+        <input id="Btn" type="button" value="添加" />
+        <input id="Btn2" type="button" value="移除" />
+        <input id="Text1" type="text" />
+        <input id="Btn3" type="button" value="启用/禁用滚动" />
+    </div>
+
+    <div id="Test2">
+    </div>
+
