@@ -117,12 +117,13 @@
                 },
                 {
                     image: "",
-                    icon: "Test",
+                    icon: "JQueryTabView/image/loading.gif",
                     caption: null,
                     title: "QQQQQ",
                     closable: false,
                     ajax: {
-                        url: "JQueryTabView/JQueryTabViewStyle_min.css",
+                        url: "JQueryTabView/jQueryTabViewStyle_min.css",
+                        type: "GET",
                         dataType: "html",
                         success: function(data, textStatus, xhr){
                             this.append(data);
